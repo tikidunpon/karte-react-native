@@ -52,8 +52,8 @@ RCT_EXPORT_MODULE()
     return [KRTApp visitorId];
 }
 
-- (BOOL)isOptOut {
-    return [KRTApp isOptOut];
+- (NSNumber *)isOptOut {
+    return @([KRTApp isOptOut]);
 }
 
 - (void)optIn:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {

@@ -53,12 +53,12 @@ RCT_EXPORT_MODULE()
     resolve(nil);
 }
 
-- (BOOL)canHandle:(NSDictionary *)userInfo {
+- (NSNumber *)canHandle:(NSDictionary *)userInfo {
     KRTRemoteNotification *notification = [[KRTRemoteNotification alloc] initWithUserInfo:userInfo];
-    return notification != nil;
+    return @(notification != nil);
 }
 
-- (BOOL)handle:(NSDictionary *)userInfo {
+- (NSNumber *)handle:(NSDictionary *)userInfo {
     KRTRemoteNotification *notification = [[KRTRemoteNotification alloc] initWithUserInfo:userInfo];
     if (notification) {
         __block BOOL ret;
@@ -68,9 +68,9 @@ RCT_EXPORT_MODULE()
             dispatch_semaphore_signal(semaphore);
         });
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return ret;
+        return @(ret);
     } else {
-        return NO;
+        return @NO;
     }
 }
 

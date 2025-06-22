@@ -47,8 +47,8 @@ RCT_EXPORT_MODULE()
 }
 
 #ifdef RCT_NEW_ARCH_ENABLED
-- (BOOL)isPresenting {
-    return [[KRTInAppMessaging shared] isPresenting];
+- (NSNumber *)isPresenting {
+    return @([[KRTInAppMessaging shared] isPresenting]);
 }
 
 - (void)dismiss:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
