@@ -16,8 +16,10 @@
 
 #import "RNKRTNotificationModule.h"
 
-@import KarteCore;
-@import KarteRemoteNotification;
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#import <KarteCore/KarteCore-Swift.h>
+#import <KarteRemoteNotification/KarteRemoteNotification-Swift.h>
+#import <KarteRemoteNotification/KRTApp+RemoteNotification.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTConversions.h>

@@ -16,8 +16,8 @@
 
 #import "RNKRTVariablesModule.h"
 
-@import KarteCore;
-@import KarteVariables;
+#import <KarteVariables/KarteVariables-Swift.h>
+#import "KRTTracker+Variables.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTConversions.h>

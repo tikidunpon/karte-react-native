@@ -16,7 +16,9 @@
 
 #import "RNKRTInAppMessagingModule.h"
 
-@import KarteInAppMessaging;
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#import <KarteCore/KarteCore-Swift.h>
+#import <KarteInAppMessaging/KarteInAppMessaging-Swift.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTConversions.h>

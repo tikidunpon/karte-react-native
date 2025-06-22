@@ -16,11 +16,7 @@
 
 #import "RNKRTVisualTrackingModule.h"
 
-#if __has_include("RNKRTVisualTracking-Swift.h")
-#import "RNKRTVisualTracking-Swift.h"
-#else
 #import <RNKRTVisualTracking/RNKRTVisualTracking-Swift.h>
-#endif
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTConversions.h>

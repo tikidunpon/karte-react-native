@@ -16,7 +16,8 @@
 
 #import "RNKRTCoreModule.h"
 
-@import KarteCore;
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#import <KarteCore/KarteCore-Swift.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTConversions.h>
