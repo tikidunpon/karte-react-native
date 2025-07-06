@@ -24,13 +24,12 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import io.karte.android.KarteApp
 import io.karte.android.core.usersync.UserSync
 import io.karte.android.tracking.Tracker
 
-@ReactModule(name = KarteCoreModule.NAME, isTurboModule = true)
-class KarteCoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), ActivityEventListener, TurboModule {
+@ReactModule(name = KarteCoreModule.NAME)
+class KarteCoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), ActivityEventListener {
   companion object {
     const val NAME = "RNKRTCoreModule"
   }
@@ -89,8 +88,8 @@ class KarteCoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
   }
 
   @ReactMethod
-  fun identify(values: ReadableMap?, promise: Promise) {
-    Tracker.identify(values?.toHashMap() ?: emptyMap())
+  fun identify(values: ReadableMap, promise: Promise) {
+    Tracker.identify(values.toHashMap())
     promise.resolve(null)
   }
 
@@ -101,8 +100,8 @@ class KarteCoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
   }
 
   @ReactMethod
-  fun attribute(values: ReadableMap?, promise: Promise) {
-    Tracker.attribute(values?.toHashMap() ?: emptyMap())
+  fun attribute(values: ReadableMap, promise: Promise) {
+    Tracker.attribute(values.toHashMap())
     promise.resolve(null)
   }
 
@@ -118,7 +117,7 @@ class KarteCoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getUserSyncScript(): String {
-    return UserSync.getUserSyncScript() ?: ""
+  fun getUserSyncScript(): String? {
+    return UserSync.getUserSyncScript()
   }
 }

@@ -21,13 +21,12 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import io.karte.android.KarteApp
 import io.karte.android.notifications.MessageHandler
 import io.karte.android.notifications.registerFCMToken
 
-@ReactModule(name = KarteNotificationModule.NAME, isTurboModule = true)
-class KarteNotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), TurboModule {
+@ReactModule(name = KarteNotificationModule.NAME)
+class KarteNotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
   companion object {
     const val NAME = "RNKRTNotificationModule"
   }

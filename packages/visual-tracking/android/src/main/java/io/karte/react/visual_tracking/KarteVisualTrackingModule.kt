@@ -20,7 +20,6 @@ import android.view.View
 import com.facebook.react.bridge.*
 import com.facebook.react.fabric.FabricUIManager
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.uimanager.UIManagerModule
 import com.facebook.react.uimanager.common.UIManagerType
@@ -32,8 +31,8 @@ import io.karte.android.visualtracking.VisualTracking
 
 private const val LOG_TAG = "Karte.VT.RN"
 
-@ReactModule(name = KarteVisualTrackingModule.NAME, isTurboModule = true)
-class KarteVisualTrackingModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener, TurboModule {
+@ReactModule(name = KarteVisualTrackingModule.NAME)
+class KarteVisualTrackingModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
   companion object {
     const val NAME = "RNKRTVisualTrackingModule"
   }

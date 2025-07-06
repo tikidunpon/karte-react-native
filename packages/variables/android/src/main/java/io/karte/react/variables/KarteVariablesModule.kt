@@ -17,7 +17,6 @@ package io.karte.react.variables
 
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import io.karte.android.utilities.toList
 import io.karte.android.utilities.toMap
 import io.karte.android.variables.Variable
@@ -25,8 +24,8 @@ import io.karte.android.variables.Variables
 import org.json.JSONArray
 import org.json.JSONObject
 
-@ReactModule(name = KarteVariablesModule.NAME, isTurboModule = true)
-class KarteVariablesModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), TurboModule {
+@ReactModule(name = KarteVariablesModule.NAME)
+class KarteVariablesModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
   companion object {
     const val NAME = "RNKRTVariablesModule"
   }
@@ -81,40 +80,40 @@ class KarteVariablesModule(reactContext: ReactApplicationContext) : ReactContext
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getString(key: String, defaultValue: String?): String? {
+  fun getString(key: String, defaultValue: String): String? {
     val variable = variables[key] ?: return defaultValue
     return variable.string(defaultValue)
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getInteger(key: String, defaultValue: Int?): Int? {
+  fun getInteger(key: String, defaultValue: Int): Int {
     val variable = variables[key] ?: return defaultValue
-    return defaultValue?.let { variable.long(it.toLong()).toInt() }
+    return variable.long(defaultValue.toLong()).toInt()
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getDouble(key: String, defaultValue: Double?): Double? {
+  fun getDouble(key: String, defaultValue: Double): Double {
     val variable = variables[key] ?: return defaultValue
-    return defaultValue?.let { variable.double(it) }
+    return variable.double(defaultValue)
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getBoolean(key: String, defaultValue: Boolean?): Boolean? {
+  fun getBoolean(key: String, defaultValue: Boolean): Boolean {
     val variable = variables[key] ?: return defaultValue
-    return defaultValue?.let { variable.boolean(it) }
+    return variable.boolean(defaultValue)
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getArray(key: String, defaultValue: ReadableArray?): WritableArray? {
-    val variable = variables[key] ?: return defaultValue?.let { Arguments.makeNativeArray(it.toArrayList()) }
-    val array = variable.jsonArray(defaultValue?.let { JSONArray(it.toArrayList()) })
-    return array?.let { Arguments.makeNativeArray(it.toList()) }
+  fun getArray(key: String, defaultValue: ReadableArray): WritableArray? {
+    val variable = variables[key] ?: return Arguments.makeNativeArray(defaultValue.toArrayList())
+    val array = variable.jsonArray(JSONArray(defaultValue.toArrayList()))
+    return Arguments.makeNativeArray(array.toList())
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  fun getObject(key: String, defaultValue: ReadableMap?): WritableMap? {
-    val variable = variables[key] ?: return defaultValue?.let { Arguments.makeNativeMap(it.toHashMap()) }
-    val map = variable.jsonObject(defaultValue?.let { JSONObject(it.toHashMap() as HashMap<*, *>) })
-    return map?.let { Arguments.makeNativeMap(it.toMap()) }
+  fun getObject(key: String, defaultValue: ReadableMap): WritableMap? {
+    val variable = variables[key] ?: return Arguments.makeNativeMap(defaultValue.toHashMap())
+    val map = variable.jsonObject(JSONObject(defaultValue.toHashMap() as HashMap<*, *>))
+    return Arguments.makeNativeMap(map.toMap())
   }
 }
